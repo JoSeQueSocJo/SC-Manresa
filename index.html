@@ -3,294 +3,553 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#A92B3B">
-  <title>Servei de Continuïtat de Manresa</title>
+  <meta name="description" content="Servei de Continuïtat de Manresa. Coordinació, registre i prevenció d'incidències relacionades amb la continuïtat ciutadana.">
+  <title>Servei de Continuïtat de Manresa | SCM</title>
+
   <style>
     :root {
-      --burdeos: #A92B3B;
-      --blau: #234257;
-      --fons: #F2F0E7;
-      --gris: #E5E5E5;
-      --blanc: #FFFFFF;
+      --red: #A92B3B;
+      --blue: #234257;
+      --paper: #F2F0E7;
+      --white: #FFFFFF;
+      --line: #D9D9D4;
+      --muted: #626B70;
     }
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      background: var(--fons);
-      color: #252525;
+      color: #262A2D;
+      background: var(--white);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.65;
     }
 
-    header {
-      background: var(--blanc);
-      border-top: 7px solid var(--burdeos);
-      border-bottom: 1px solid var(--gris);
-      padding: 24px 7%;
+    a { color: inherit; }
+
+    .topline {
+      height: 7px;
+      background: var(--red);
     }
 
-    .capcalera {
-      max-width: 1100px;
-      margin: auto;
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    .masthead {
+      padding: 27px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .identity {
       display: flex;
       align-items: center;
       gap: 18px;
     }
 
-    .simbol {
-      width: 48px;
-      height: 48px;
-      background: var(--burdeos);
-      clip-path: polygon(50% 0, 100% 35%, 82% 100%, 18% 100%, 0 35%);
+    .symbol {
+      width: 53px;
+      height: 53px;
       flex-shrink: 0;
+      position: relative;
+      background: var(--red);
+      clip-path: polygon(50% 0, 100% 35%, 83% 100%, 17% 100%, 0 35%);
     }
 
-    .marca {
-      color: var(--blau);
-      font-size: 1.05rem;
+    .symbol::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 10px;
+      height: 22px;
+      border: 2px solid white;
+      border-bottom: 0;
+    }
+
+    .wordmark {
+      color: var(--blue);
       font-weight: 700;
-      letter-spacing: 0.07em;
+      font-size: 1rem;
       line-height: 1.35;
+      letter-spacing: .07em;
     }
 
-    .marca small {
+    .wordmark small {
       display: block;
-      color: var(--burdeos);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      margin-top: 6px;
+      margin-top: 7px;
+      color: var(--red);
+      font-size: .68rem;
+      letter-spacing: .14em;
+    }
+
+    .nav-wrap {
+      background: var(--blue);
     }
 
     nav {
-      background: var(--blau);
-      padding: 0 7%;
-    }
-
-    .navegacio {
-      max-width: 1100px;
-      margin: auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 0;
+      align-items: center;
     }
 
     nav a {
+      display: block;
+      padding: 14px 17px;
       color: white;
       text-decoration: none;
-      padding: 14px 18px;
-      display: block;
-      font-size: 0.9rem;
+      font-size: .88rem;
+      border-bottom: 3px solid transparent;
     }
 
-    nav a:hover, nav a:focus {
-      background: var(--burdeos);
+    nav a:hover,
+    nav a:focus-visible {
+      background: #304F63;
+      border-bottom-color: #E8BFC3;
     }
 
-    main {
-      max-width: 1100px;
-      margin: 44px auto;
-      padding: 0 24px;
+    .hero {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
     }
 
-    .avis {
-      background: var(--burdeos);
-      color: white;
-      padding: 10px 16px;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      font-weight: bold;
+    .hero-inner {
+      padding-top: 70px;
+      padding-bottom: 65px;
+    }
+
+    .eyebrow {
       display: inline-block;
+      color: var(--red);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
     }
 
     h1 {
-      color: var(--blau);
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      line-height: 1.12;
-      max-width: 800px;
-      margin: 22px 0;
-      font-weight: 600;
+      max-width: 850px;
+      margin: 19px 0 23px;
+      color: var(--blue);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: 1.04;
+      letter-spacing: -.045em;
     }
 
-    .introduccio {
-      max-width: 760px;
-      font-size: 1.15rem;
+    .hero-copy {
+      max-width: 660px;
+      color: #41494D;
+      font-size: 1.12rem;
     }
 
-    .franja {
-      background: var(--blau);
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border: 1px solid var(--blue);
+      background: var(--blue);
       color: white;
-      padding: 34px;
-      margin-top: 42px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 700;
     }
 
-    .franja h2 {
+    .button:hover {
+      background: #34576B;
+    }
+
+    .button-secondary {
+      color: var(--blue);
+      background: transparent;
+    }
+
+    .button-secondary:hover {
+      color: white;
+    }
+
+    .notice {
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: .85rem;
+    }
+
+    .notice strong {
+      color: var(--red);
+      margin-right: 8px;
+      letter-spacing: .05em;
+    }
+
+    section.content {
+      padding: 62px 0;
+    }
+
+    .section-heading {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      color: var(--muted);
       margin-top: 0;
-      font-size: 1.5rem;
+    }
+
+    .areas {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .area {
+      padding: 22px 19px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--red);
+      background: white;
+    }
+
+    .area-number {
+      color: var(--red);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+    }
+
+    .area h3 {
+      margin: 13px 0 9px;
+      color: var(--blue);
+      font-size: 1.05rem;
+    }
+
+    .area p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .91rem;
+    }
+
+    .programme {
+      padding: 42px;
+      background: var(--blue);
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .programme .eyebrow {
+      color: #E8BFC3;
+    }
+
+    .programme h2 {
+      margin: 10px 0;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.2;
       font-weight: 500;
     }
 
-    .funcions {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
+    .programme p {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: #E0E7EB;
     }
 
-    .funcio {
+    .programme .button {
+      border-color: white;
       background: white;
-      border: 1px solid var(--gris);
-      border-left: 5px solid var(--burdeos);
-      padding: 22px;
+      color: var(--blue);
+      white-space: nowrap;
     }
 
-    .funcio h3 {
-      color: var(--blau);
-      margin-top: 0;
-      letter-spacing: 0.04em;
+    .programme .button:hover {
+      background: var(--paper);
+    }
+
+    .documents {
+      background: var(--paper);
+    }
+
+    .document-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .document-link strong {
+      display: block;
       font-size: 1rem;
     }
 
-    .funcio p {
-      margin-bottom: 0;
-      font-size: 0.95rem;
+    .document-link span {
+      display: block;
+      color: var(--muted);
+      font-size: .88rem;
     }
 
-    .lema {
-      text-align: center;
-      color: var(--burdeos);
-      font-size: 1.1rem;
-      font-weight: bold;
-      letter-spacing: 0.06em;
-      padding: 42px 10px;
+    .document-link .arrow {
+      color: var(--red);
+      font-size: 1.4rem;
+    }
+
+    .document-link:hover strong {
+      text-decoration: underline;
     }
 
     footer {
-      background: #1B303D;
+      padding: 35px 0 22px;
+      background: #192E3A;
       color: white;
-      padding: 28px 7%;
-      font-size: 0.82rem;
     }
 
-    .peu {
-      max-width: 1100px;
-      margin: auto;
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .ficcio {
-      border-top: 1px solid #62727B;
-      padding-top: 14px;
-      margin-top: 16px;
-      color: #D9E0E4;
+    footer p {
+      margin: 5px 0;
+      color: #D8E0E4;
+      font-size: .86rem;
     }
 
-    @media (max-width: 600px) {
-      .funcions { grid-template-columns: 1fr; }
-      header { padding: 20px; }
-      nav { padding: 0 10px; }
-      nav a { padding: 12px; }
-      .franja { padding: 24px; }
+    .footer-bottom {
+      margin-top: 25px;
+      padding-top: 17px;
+      border-top: 1px solid #52636D;
+      color: #D8E0E4;
+      font-size: .78rem;
+    }
+
+    @media (max-width: 850px) {
+      .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+      .programme {
+        grid-template-columns: 1fr;
+        padding: 30px;
+      }
+
+      .programme .button { justify-self: start; }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: 88%; }
+
+      .masthead { padding: 20px 0; }
+
+      .symbol {
+        width: 42px;
+        height: 42px;
+      }
+
+      .wordmark { font-size: .83rem; }
+      .wordmark small { font-size: .59rem; }
+
+      nav a {
+        padding: 12px 10px;
+        font-size: .8rem;
+      }
+
+      .hero-inner {
+        padding-top: 48px;
+        padding-bottom: 45px;
+      }
+
+      .areas { grid-template-columns: 1fr; }
+
+      section.content { padding: 44px 0; }
+
+      .programme { padding: 25px; }
+
+      .document-link { align-items: flex-start; }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="capcalera">
-      <div class="simbol" aria-hidden="true"></div>
-      <div class="marca">
+  <div class="topline"></div>
+
+  <header class="masthead">
+    <div class="container identity">
+      <div class="symbol" aria-hidden="true"></div>
+      <div class="wordmark">
         SERVEI DE CONTINUÏTAT DE MANRESA
         <small>COORDINACIÓ · REGISTRE · ANOMALIES</small>
       </div>
     </div>
   </header>
 
-  <nav aria-label="Navegació principal">
-    <div class="navegacio">
+  <div class="nav-wrap">
+    <nav class="container" aria-label="Navegació principal">
       <a href="#inici">Inici</a>
       <a href="#servei">El Servei</a>
-      <a href="#programa">Benestar i continuïtat</a>
+      <a href="#programa">Programa ciutadà</a>
       <a href="#documents">Documents</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="inici">
+      <div class="container hero-inner">
+        <span class="eyebrow">Servei de Continuïtat de Manresa</span>
+
+        <h1>La ciutat quotidiana.</h1>
+
+        <p class="hero-copy">
+          La continuïtat dels espais, les activitats i les relacions
+          ciutadanes requereix observació, coordinació i registre.
+          El Servei treballa per preservar les condicions que fan
+          possible el funcionament habitual de la ciutat.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#servei">Conegueu el Servei</a>
+          <a class="button button-secondary" href="#programa">
+            Informació ciutadana
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="notice">
+      <div class="container">
+        <strong>INFORMACIÓ GENERAL</strong>
+        Consulteu les àrees de treball i les publicacions disponibles
+        del Servei de Continuïtat.
+      </div>
     </div>
-  </nav>
 
-  <main id="inici">
-    <span class="avis">PORTAL INFORMATIU</span>
+    <section class="content" id="servei">
+      <div class="container">
+        <span class="eyebrow">Àrees de treball</span>
+        <h2 class="section-heading">Una ciutat, un sistema compartit.</h2>
 
-    <h1>La ciutat quotidiana requereix una continuïtat constant.</h1>
+        <p class="section-intro">
+          El Servei coordina procediments d'observació, documentació
+          i prevenció per contribuir a la continuïtat de l'entorn ciutadà.
+        </p>
 
-    <p class="introduccio">
-      El Servei de Continuïtat de Manresa és un organisme de coordinació
-      dedicat a l'observació, el registre i la prevenció d'incidències
-      relacionades amb la continuïtat de l'entorn ciutadà.
-    </p>
+        <div class="areas">
+          <article class="area">
+            <span class="area-number">01 / OBSERVACIÓ</span>
+            <h3>Identificar variacions</h3>
+            <p>
+              Observar les condicions habituals de l'entorn i
+              identificar variacions que requereixin registre.
+            </p>
+          </article>
 
-    <section class="franja" id="servei">
-      <h2>Una ciutat, un sistema compartit.</h2>
-      <p>
-        La continuïtat dels espais, les activitats i les relacions
-        ciutadanes constitueix una responsabilitat compartida.
-        El Servei coordina els procediments necessaris per identificar
-        variacions, documentar incidències i preservar la normalitat.
-      </p>
+          <article class="area">
+            <span class="area-number">02 / REGISTRE</span>
+            <h3>Documentar incidències</h3>
+            <p>
+              Registrar els fets observats i garantir la
+              traçabilitat de la informació.
+            </p>
+          </article>
+
+          <article class="area">
+            <span class="area-number">03 / PREVENCIÓ</span>
+            <h3>Reduir l'impacte</h3>
+            <p>
+              Elaborar recomanacions orientades a preservar
+              el funcionament de la vida quotidiana.
+            </p>
+          </article>
+
+          <article class="area">
+            <span class="area-number">04 / NORMALITZACIÓ</span>
+            <h3>Preservar la continuïtat</h3>
+            <p>
+              Coordinar actuacions destinades a mantenir
+              l'estabilitat dels espais i les activitats.
+            </p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section class="funcions" aria-label="Àrees de treball">
-      <article class="funcio">
-        <h3>01 · OBSERVACIÓ</h3>
-        <p>
-          Identificar variacions en les condicions habituals
-          de l'entorn ciutadà.
-        </p>
-      </article>
-
-      <article class="funcio">
-        <h3>02 · REGISTRE</h3>
-        <p>
-          Documentar les incidències i garantir-ne
-          la traçabilitat.
-        </p>
-      </article>
-
-      <article class="funcio">
-        <h3>03 · PREVENCIÓ</h3>
-        <p>
-          Establir recomanacions per reduir l'impacte
-          de les incidències en la vida quotidiana.
-        </p>
-      </article>
-
-      <article class="funcio">
-        <h3>04 · NORMALITZACIÓ</h3>
-        <p>
-          Coordinar actuacions destinades a preservar
-          la continuïtat dels espais i les activitats.
-        </p>
-      </article>
+    <section class="container" id="programa">
+      <div class="programme">
+        <div>
+          <span class="eyebrow">Informació per a la ciutadania</span>
+          <h2>Programa de Benestar i Continuïtat Ciutadana</h2>
+          <p>
+            Recomanacions i informació general per afavorir
+            la continuïtat de les activitats quotidianes
+            i la correcta coordinació de l'entorn ciutadà.
+          </p>
+        </div>
+        <a class="button" href="#documents">Consultar informació</a>
+      </div>
     </section>
 
-    <section id="programa" class="lema">
-      PROGRAMA DE BENESTAR I CONTINUÏTAT CIUTADANA
-    </section>
+    <section class="content documents" id="documents">
+      <div class="container">
+        <span class="eyebrow">Centre de documentació</span>
+        <h2 class="section-heading">Documents i publicacions</h2>
+        <p class="section-intro">
+          Materials informatius i documentació general del Servei.
+          Les publicacions s'incorporaran progressivament.
+        </p>
 
-    <section id="documents">
-      <h2>Documents i publicacions</h2>
-      <p>
-        En aquest espai es publicaran documents informatius,
-        protocols de consulta i materials del Servei.
-      </p>
+        <a class="document-link" href="#documents">
+          <div>
+            <strong>Presentació del Servei</strong>
+            <span>Informació general i àrees de treball</span>
+          </div>
+          <span class="arrow" aria-hidden="true">›</span>
+        </a>
+
+        <a class="document-link" href="#documents">
+          <div>
+            <strong>Programa de Benestar i Continuïtat Ciutadana</strong>
+            <span>Informació i recomanacions per a la ciutadania</span>
+          </div>
+          <span class="arrow" aria-hidden="true">›</span>
+        </a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="peu">
-      <strong>Servei de Continuïtat de Manresa</strong>
-      <p>Coordinació · Registre · Anomalies</p>
-      <div class="ficcio">
-        Projecte de ficció interactiva. Organisme i continguts ficticis.
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <strong>Servei de Continuïtat de Manresa</strong>
+          <p>Coordinació · Registre · Anomalies</p>
+        </div>
+        <p>La ciutat quotidiana.</p>
+      </div>
+
+      <div class="footer-bottom">
+        Projecte de ficció interactiva. Organisme i continguts ficticis,
+        creats amb finalitats narratives.
       </div>
     </div>
   </footer>
 </body>
 </html>
+
